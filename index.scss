@@ -1,0 +1,886 @@
+@import "./breakpoints.scss";
+
+
+
+//colors
+$bg: #f6e9d4;
+$text: #323232;
+$secondaryText: #bf9873;
+$cursor: #dfc163;
+$secondaryBg: #dcdcd4;
+
+//fonts
+@mixin headingOne {
+  font-family: "voyage-bold";
+  font-size: 9.375rem;
+  color: $text;
+  letter-spacing: 0.338rem;
+}
+
+@mixin headingOneJon {
+  font-family: "voyage-bold";
+  font-size: 12.5rem;
+  color: $text;
+  letter-spacing: 0.338rem;
+}
+
+@mixin headingThree {
+  font-family: "voyage-regular";
+  font-size: 0.8rem;
+  color: $text;
+  letter-spacing: 0.254rem;
+}
+
+@mixin headingTwo {
+  font-family: "voyage-bold";
+  font-size: 1.3rem;
+  letter-spacing: 0.094rem;
+  color: $text;
+}
+
+@mixin navText {
+  font-family: "pangram-bold";
+  font-size: 0.563rem;
+  letter-spacing: 0.094rem;
+  color: $text;
+}
+
+@mixin headingSection {
+  font-family: "voyage-regular";
+  font-size: 1.25rem;
+  letter-spacing: 0.254rem;
+  color: $text;
+}
+
+@mixin text {
+  max-width: 370px;
+  line-height: 25px;
+  font-size: 0.875rem;
+  letter-spacing: 0.05rem;
+}
+
+@mixin navHeadingOne {
+  font-family: "voyage-bold";
+  font-size: 3rem;
+  letter-spacing: 0.094rem;
+  color: $text;
+  margin-bottom: 0.938rem;
+}
+
+@mixin navHeadingTwo {
+  font-family: "voyage-bold";
+  font-size: 1.8rem;
+  letter-spacing: 0.094rem;
+  color: $text;
+  margin-bottom: 0.938rem;
+}
+
+@mixin secBgText {
+  font-size: 1rem;
+  font-family: "pangram-regular";
+  line-height: 40px;
+  letter-spacing: 0.125rem;
+  color: $text;
+}
+
+// -----------mixins style -------------
+
+@mixin headingRotate() {
+  transform: rotate(-90deg);
+  margin: -6.725rem;
+  font-family: "voyage-regular";
+  font-size: 12.5rem;
+  letter-spacing: 0.338rem;
+  color: $text;
+}
+
+@font-face {
+  font-family: "voyage-regular";
+  src: url("fonts/voyage-regular-webfont.woff2") format("woff2"),
+    url("fonts/voyage-regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "voyage-bold";
+  src: url("fonts/voyage-bold-webfont.woff2") format("woff2"),
+    url("fonts/voyage-bold-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "pangram-regular";
+  src: url("fonts/pangram-regular-webfont.woff2") format("woff2"),
+    url("fonts/pangram-regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "pangram-medium";
+  src: url("fonts/pangram-medium-webfont.woff2") format("woff2"),
+    url("fonts/pangram-medium-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "pangram-bold";
+  src: url("fonts/pangram-bold-webfont.woff2") format("woff2"),
+    url("fonts/pangram-bold-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  background: $bg;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  scrollbar-width: none;
+  // scroll-behavior: smooth;
+}
+
+body {
+  background: $bg;
+  font-family: "pangram-regular", sans-serif;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &:before {
+    position: absolute;
+    content: "";
+    background-image: url("images/grain-texture.png");
+    background-repeat: repeat;
+    background-size: 180px 180px;
+    height: 300%;
+    width: 300%;
+    left: -50%;
+    opacity: 0.2;
+    position: fixed;
+    top: -100%;
+    animation: grain 6s steps(10) infinite;
+  }
+
+  @keyframes grain {
+
+    0%,
+    100% {
+      transform: translate(0, 0);
+    }
+
+    10% {
+      transform: translate(-5%, -10%);
+    }
+
+    20% {
+      transform: translate(-15%, -10%);
+    }
+
+    30% {
+      transform: translate(7%, -25%);
+    }
+
+    40% {
+      transform: translate(5%, 25%);
+    }
+
+    50% {
+      transform: translate(-15%, 10%);
+    }
+
+    60% {
+      transform: translate(15%, 0);
+    }
+
+    70% {
+      transform: translate(0, 15%);
+    }
+
+    80% {
+      transform: translate(3%, 35%);
+    }
+
+    90% {
+      transform: translate(-10%, 10%);
+    }
+  }
+}
+
+// .bg {
+//   background: $secondaryBg !important;
+//   width: 100vw;
+//   height: 100vh;
+//   z-index: 90;
+//   position: fixed;
+// }
+
+.cursor {
+  position: absolute;
+  pointer-events: none;
+  padding: 1.5rem;
+  border: 1px solid $secondaryText;
+  border-radius: 50%;
+  z-index: 500;
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -50%);
+  transition: all 0.4s ease;
+  transition-property: padding;
+
+  @include media('>phone', '<=tablet') {
+    visibility: hidden;
+  }
+
+  @include media('<=phone') {
+    visibility: hidden;
+  }
+}
+
+.cursor-inner {
+  position: absolute;
+  pointer-events: none;
+  padding: 0.2rem;
+  background-color: $secondaryText;
+  border-radius: 50%;
+  z-index: 500;
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -50%);
+  transition: all 0.4s ease;
+  transition-property: padding;
+
+  @include media('>phone', '<=tablet') {
+    visibility: hidden;
+  }
+
+  @include media('<=phone') {
+    visibility: hidden;
+  }
+}
+
+.active {
+  position: absolute;
+  pointer-events: none;
+  padding: 2.5rem;
+  background-color: $secondaryText;
+  border-radius: 50%;
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -50%);
+  transition: all 0.4s ease;
+  transition-property: padding;
+  mix-blend-mode: difference;
+
+}
+
+.active-social {
+  position: absolute;
+  pointer-events: none;
+  padding: 0.8rem;
+  background-color: $secondaryText;
+  border-radius: 50%;
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -50%);
+  transition: all 0.4s ease;
+  transition-property: padding;
+  mix-blend-mode: difference;
+
+
+}
+
+.scroller {
+  height: 100vh;
+}
+
+.scrollbar-track {
+  opacity: 0 !important;
+
+  .show {
+    opacity: 0 !important;
+
+    &:hover {
+      opacity: 0 !important;
+    }
+  }
+}
+
+.container {
+  max-width: 65%;
+  margin: 0 auto;
+
+  @include media('>1440px', '<=2560px') {
+    max-width: 35%;
+  }
+
+  @include media('>=1920px') {
+    max-width: 40%;
+
+  }
+
+
+  .intro__bg {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include media('>1920px', '<=2560px') {
+      transform: scale(2);
+    }
+
+    @include media('>=1920px') {
+      transform: scale(1.7);
+    }
+  }
+
+  .intro__wrapper {
+    font-family: "voyage-bold";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    -webkit-backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    transform-style: preserve-3d;
+
+    .intro__heading-one {
+      h1 {
+        @include headingOne();
+
+        @include media('>phone', '<=767px') {
+          font-size: 5.375rem;
+        }
+
+        @include media('<=phone') {
+          font-size: 3.375rem;
+        }
+      }
+    }
+
+    .intro__heading-two {
+      z-index: 20;
+      position: relative;
+      top: 75px;
+
+      h1 {
+        @include headingOneJon();
+
+        @include media('>phone', '<=767px') {
+          font-size: 8.5rem;
+        }
+
+        @include media('<=phone') {
+          font-size: 6.5rem;
+        }
+      }
+    }
+
+    .intro__image {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -60%);
+
+      img {
+        width: 273px;
+
+        @include media('>phone', '<=767px') {
+          width: 50vw;
+        }
+
+        @include media('<=phone') {
+          width: 52vw;
+        }
+      }
+    }
+  }
+
+  .intro__heading-three {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    @include headingThree();
+    margin-top: 50px;
+    position: relative;
+    left: 15px;
+
+    @include media('<=phone') {
+      left: 5px;
+      top: 20px;
+    }
+
+    h2 {
+      @include headingTwo();
+
+      @include media('>phone', '<=767px') {
+        font-size: 1rem;
+      }
+
+      @include media('<=phone') {
+        font-size: 0.8rem;
+      }
+    }
+
+    h3 {
+      @include headingThree();
+      margin-top: 0.313rem;
+
+      @include media('>phone', '<=767px') {
+        font-size: 0.5rem;
+      }
+
+      @include media('<=phone') {
+        font-size: 0.5rem;
+      }
+    }
+  }
+
+  .scroll-arrow {
+    position: absolute;
+    top: 100vh;
+    left: 15px;
+    right: auto;
+    bottom: auto;
+    margin-top: -110px;
+    width: 20px;
+
+    @include media('>1440px', '<=2560px') {
+      position: absolute;
+      top: 100vh;
+      left: -6.8vw;
+      right: auto;
+      bottom: auto;
+      margin-top: -32vh;
+      width: 20px;
+    }
+
+    @include media('>=1920px') {
+      position: absolute;
+      top: 100vh;
+      left: -8.6vw;
+      right: auto;
+      bottom: auto;
+      margin-top: -30vh;
+      width: 20px;
+
+    }
+
+    @include media('>phone', '<=767px') {
+      margin-top: -95px;
+      left: 10px;
+    }
+
+    @include media('<=phone') {
+      margin-top: -80px;
+      width: 12px;
+    }
+
+    .scroll-text {
+      margin-bottom: 10px;
+      transform: rotate(-90deg);
+      letter-spacing: 0.094rem;
+
+      @include media('<=phone') {
+        font-size: 0.775rem;
+      }
+    }
+  }
+
+  .about {
+    padding-top: 10vh;
+    padding-bottom: 20vh;
+
+
+
+    @include media('>1440px', '<=2560px') {
+      transform: scale(1.5);
+      padding-top: 20vh;
+    }
+
+    @include media('>=1920px') {
+      padding-top: 30vh;
+    }
+
+    @include media('>phone', '<=tablet') {
+      padding-top: 20vh;
+    }
+
+    .about__title {
+      margin-bottom: 30px;
+
+      @include media('>phone', '<=tablet') {
+        margin-bottom: 0px;
+
+      }
+
+      .title-bold {
+        font-family: "voyage-bold";
+      }
+
+      h2 {
+        @include headingSection();
+      }
+    }
+
+    .about__text {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      padding-top: 50px;
+
+      .heading-rotate {
+        @include headingRotate();
+
+        @include media('>phone', '<=tablet') {
+          margin: 40px 0;
+          transform: rotate(0deg);
+          font-size: 8.5rem;
+        }
+
+
+        @include media('>phone', '<=767px') {
+          margin: 40px -10px;
+          font-size: 4.5rem;
+        }
+
+        @include media('<=phone') {
+          margin: 40px 0;
+          font-size: 5.5rem;
+          transform: rotate(0deg);
+        }
+      }
+
+      .text {
+        @include text();
+
+        @include media('>phone', '<=tablet') {
+          margin-top: 1.25rem;
+        }
+      }
+
+      @include media('>phone', '<=tablet') {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+
+      }
+
+      @include media('<=phone') {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  }
+
+  .works {
+    padding-top: 10vh;
+    padding-bottom: 20vh;
+
+    @include media('>1440px', '<=2560px') {
+      transform: scale(1.5);
+      padding-top: 20vh;
+    }
+
+    @include media('>=1920px') {
+      padding-top: 30vh;
+    }
+
+    @include media('>phone', '<=tablet') {
+      padding-top: 5vh;
+    }
+
+    .works__title {
+      margin-bottom: 30px;
+
+      .title-bold {
+        font-family: "voyage-bold";
+      }
+
+      h2 {
+        @include headingSection();
+      }
+    }
+
+    .works__text {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      padding-top: 50px;
+
+      @include media('>phone', '<=tablet') {
+        align-items: flex-end;
+        flex-direction: column;
+
+      }
+
+      @include media('<=phone') {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .heading-rotate {
+        @include headingRotate();
+
+        @include media('>phone', '<=tablet') {
+          font-size: 8.5rem;
+          margin: 40px 0;
+          transform: rotate(0deg);
+        }
+
+        @include media('>phone', '<=767px') {
+          font-size: 5.5rem
+        }
+
+        @include media('<=phone') {
+          font-size: 5.5rem;
+          transform: rotate(0deg);
+          margin: 40px 0;
+        }
+      }
+
+      .works__links {
+        position: relative;
+
+        .links {
+          color: $text;
+          position: relative;
+        }
+
+        li {
+          list-style-type: none;
+          font-size: 3.975rem;
+          font-family: "voyage-regular";
+          letter-spacing: 0.2rem;
+          margin: 40px 0;
+          position: relative;
+
+          @include media('>phone', '<=767px') {
+            font-size: 2.775rem;
+            letter-spacing: 0rem;
+          }
+
+          @include media('<=phone') {
+            font-size: 2.075rem;
+            letter-spacing: 0rem;
+            margin-top: 60px;
+          }
+
+          &:before {
+            width: 100%;
+            border-bottom: 1px solid $text;
+            position: absolute;
+            content: "";
+            transform: translateY(100px);
+
+            @include media('>phone', '<=767px') {
+              transform: translateY(70px);
+            }
+
+            @include media('<=phone') {
+              transform: translateY(55px);
+            }
+          }
+
+          span {
+            font-size: 1.875rem;
+            color: $secondaryText;
+            font-family: "voyage-bold";
+
+            @include media('<=phone') {
+              font-size: 1.175rem;
+            }
+          }
+
+          a {
+            text-decoration: none;
+            color: $text;
+          }
+        }
+      }
+    }
+
+    .works__item-img {
+      pointer-events: none;
+      position: absolute;
+      height: 50vh;
+      max-height: 400px;
+      opacity: 0;
+      left: 100%;
+      top: 50%;
+      transform: translate3d(calc(-100% - 35vw), -40%, 0) translate3d(0, 20px, 0);
+      transition: all 0.4s ease;
+
+      @include media('>1440px', '<=2560px') {
+        opacity: 0;
+        transform: translate3d(calc(-100% - 19vw), -30%, 0) rotate3d(0, 0, 1, 2deg);
+        transition: all 0.4s ease;
+      }
+
+      @include media('>=1920px') {
+        opacity: 0;
+        transform: translate3d(calc(-100% - 23vw), -30%, 0) rotate3d(0, 0, 1, 2deg);
+        transition: all 0.4s ease;
+        height: 30vh;
+
+      }
+
+      @include media('>phone', '<=tablet') {
+        visibility: hidden;
+      }
+
+      @include media('<=phone') {
+        visibility: hidden;
+      }
+    }
+
+    .works__item-link:hover+.works__item-img {
+      opacity: 1;
+      transform: translate3d(calc(-100% - 35vw), -40%, 0) rotate3d(0, 0, 1, 2deg);
+      transition: all 0.4s ease;
+
+      @include media('>1440px', '<=2560px') {
+        opacity: 1;
+        transform: translate3d(calc(-100% - 19vw), -30%, 0) rotate3d(0, 0, 1, 2deg);
+        transition: all 0.4s ease;
+      }
+
+      @include media('>=1920px') {
+        opacity: 1;
+        transform: translate3d(calc(-100% - 23vw), -30%, 0) rotate3d(0, 0, 1, 2deg);
+        transition: all 0.4s ease;
+        height: 30vh;
+
+      }
+
+      @include media('>phone', '<=tablet') {
+        visibility: hidden;
+      }
+
+      @include media('<=phone') {
+        visibility: hidden;
+      }
+    }
+  }
+
+  footer {
+    padding-top: 10vh;
+    position: relative;
+
+    @include media('>1440px', '<=2560px') {
+      transform: scale(1.5);
+      padding-top: 15vh;
+
+    }
+
+    @include media('<=phone') {
+      padding-top: 5vh;
+
+    }
+
+    .footer__wrapper {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      padding-bottom: 5vh;
+    }
+
+    .footer__title {
+      font-family: "voyage-regular";
+      margin-bottom: 10vh;
+
+      @include media('>1440px', '<=2560px') {
+        margin-bottom: 7vh;
+      }
+
+      h2 {
+        @include headingSection();
+      }
+
+      span {
+        font-family: "voyage-bold";
+
+        @include media('<=phone') {
+          font-size: 1.2rem;
+        }
+      }
+    }
+
+    .footer__links {
+      position: relative;
+
+      .hover-links {
+        @include media('<=phone') {
+          margin-top: 15vh;
+          ;
+        }
+      }
+
+
+      li {
+        list-style-type: none;
+        margin: 15px 0;
+        font-size: 1rem;
+
+        @include media('<=phone') {
+          margin: 35px 0;
+        }
+
+        a {
+          text-decoration: none;
+          color: $text;
+          position: relative;
+          letter-spacing: 0.094rem;
+
+          &:before {
+            position: absolute;
+            content: "";
+            width: 0;
+            border-top: 2px solid $text;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+
+            transition: all 0.2s ease;
+          }
+        }
+      }
+    }
+
+    .footer__author {
+      display: flex;
+      align-items: center;
+
+      padding-top: 13vh;
+
+      @include media('>1440px', '<=2560px') {
+        padding-top: 7vh;
+      }
+
+      p {
+        font-size: 0.7rem;
+        max-width: 100px;
+        color: $text;
+      }
+    }
+  }
+}
